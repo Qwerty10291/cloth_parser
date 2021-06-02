@@ -75,4 +75,8 @@ if 'images' not in os.listdir():
 
 parser = Parser()
 products = parser.parse()
-json_file.write(json.dumps([product.to_dict() for product in products], ensure_ascii=False))
+prod_dict = [product.to_dict() for product in products]
+for i, prod in prod_dict:
+    prod['inc_id'] = i
+
+json_file.write(json.dumps(prod_dict, ensure_ascii=False))
